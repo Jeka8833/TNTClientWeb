@@ -209,6 +209,7 @@ display: block;
 font-size: 2.5rem;
 width: calc(100% - 24px);
 margin: 0 0;
+color: red;
 }
 
 .FAQ .row{
