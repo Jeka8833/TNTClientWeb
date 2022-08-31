@@ -725,7 +725,8 @@ cursor: pointer;
 color: #2769A1;
 }
 
-.cline a, .cline p{
+.cline a,
+.cline p{
 color: #00b6d5;
 text-decoration: none;
 transition: 0.5s linear;
