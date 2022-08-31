@@ -309,6 +309,7 @@ text-decoration: none;
 -moz-box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.15);
 box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.15);
 transition: 0.5s linear;
+cursor: pointer;
 }
 
 .btn_download:hover{
@@ -706,6 +707,7 @@ background-color: #7CAA6D;
   box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.15);
   text-align: center;
   transition: 0.5s linear;
+  cursor: pointer;
 }
 
 .btn2:hover{
@@ -716,8 +718,19 @@ background-color: #2769A1;
 color: #277DA1;
 transition: 0.5s linear;
 text-decoration: none;
+cursor: pointer;
 }
 
 #lic p a:hover{
 color: #2769A1;
+}
+
+.cline a, .cline p{
+color: #00b6d5;
+text-decoration: none;
+transition: 0.5s linear;
+}
+
+.cline a:hover{
+color: #0096D8;
 }
