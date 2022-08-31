@@ -6,6 +6,12 @@ window.onload = function(){
   const pl4 = document.getElementById("pl4");
   const pl5 = document.getElementById("pl5");
   const pl6 = document.getElementById("pl6");
+  const pl1_1 = document.getElementById("pl1_1");
+  const pl2_1 = document.getElementById("pl2_1");
+  const pl3_1 = document.getElementById("pl3_1");
+  const pl4_1 = document.getElementById("pl4_1");
+  const pl5_1 = document.getElementById("pl5_1");
+  const pl6_1 = document.getElementById("pl6_1");
   const p1 = document.getElementById("p1");
   const p2 = document.getElementById("p2");
   const p3 = document.getElementById("p3");
@@ -26,32 +32,32 @@ window.onload = function(){
 
   pl1.onclick = function(){
   p1.classList.toggle("del");
-  pl1.classList.toggle("cross");
+  pl1_1.classList.toggle("cross");
   }
 
   pl2.onclick = function(){
   p2.classList.toggle("del");
-  pl2.classList.toggle("cross");
+  pl2_1.classList.toggle("cross");
   }
 
   pl3.onclick = function(){
   p3.classList.toggle("del");
-  pl3.classList.toggle("cross");
+  pl3_1.classList.toggle("cross");
   }
 
   pl4.onclick = function(){
   p4.classList.toggle("del");
-  pl4.classList.toggle("cross");
+  pl4_1.classList.toggle("cross");
   }
 
   pl5.onclick = function(){
   p5.classList.toggle("del");
-  pl5.classList.toggle("cross");
+  pl5_1.classList.toggle("cross");
   }
 
   pl6.onclick = function(){
   p6.classList.toggle("del");
-  pl6.classList.toggle("cross");
+  pl6_1.classList.toggle("cross");
   }
 
   btn1.onclick = function(){
