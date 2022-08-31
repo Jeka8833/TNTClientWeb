@@ -196,6 +196,7 @@ background-size: contain;
 
 .cross{
 background-image: url("../images/ic0_2.png");
+background-repeat: no-repeat;
 }
 
 .FAQ p{
