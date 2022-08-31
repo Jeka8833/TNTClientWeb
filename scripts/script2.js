@@ -19,6 +19,7 @@ window.onload = function(){
   const btn4_2 = document.getElementById("btn4_2");
   const btn4_3 = document.getElementById("btn4_3");
   const btn5 = document.getElementById("btn5");
+  const btn6 = document.getElementById("btn6");
   const dark = document.getElementById("dark");
   const lic = document.getElementById("lic");
   const lic_inner = document.getElementById("lic_inner");
@@ -99,6 +100,12 @@ window.onload = function(){
   }
 
   btn5.onclick = function(){
+  dark.classList.remove("dark2");
+  lic.classList.remove("lic2");
+  lic_inner.classList.remove("lic_inner2");
+  }
+
+  btn6.onclick = function(){
   dark.classList.remove("dark2");
   lic.classList.remove("lic2");
   lic_inner.classList.remove("lic_inner2");
