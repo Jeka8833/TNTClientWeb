@@ -236,7 +236,6 @@ transition: 0.5s linear;
 position: relative;
 display: flex;
 flex-direction: column;
-width: 285px;
 height: 380px;
 padding: 6px;
 border: 1px solid #bababa;
