@@ -29,6 +29,8 @@ window.onload = function(){
   const dark = document.getElementById("dark");
   const lic = document.getElementById("lic");
   const lic_inner = document.getElementById("lic_inner");
+  const donate1 = document.getElementById("donate1");
+  const close_donate = document.getElementById("close_donate");
 
   pl1.onclick = function(){
   p1.classList.toggle("del");
@@ -117,4 +119,8 @@ window.onload = function(){
   lic_inner.classList.remove("lic_inner2");
   }
 
+  close_donate.onclick = function(){
+  donate1.classList.remove("head_donate");
+  donate1.classList.add("off");
+  }
 };
