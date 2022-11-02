@@ -31,6 +31,7 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
   width: 280px;
   height: 380px;
   padding: 6px;
@@ -56,12 +57,13 @@ font-weight: 400;
 }
 
 .donate_block p{
+width: 80%;
 text-align: justify;
 font-size: 1rem;
 }
 
 .donate_block input{
-width: 80%;
+width: 180px;
 position: relative;
 margin-top: 50px;
 }
