@@ -57,7 +57,8 @@ font-weight: 400;
 }
 
 .donate_block p{
-width: 80%;
+width: 100%;
+padding: 0 6px;
 text-align: justify;
 font-size: 1rem;
 }
