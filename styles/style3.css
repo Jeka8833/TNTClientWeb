@@ -61,13 +61,13 @@ font-weight: 400;
 .donate_block p{
 width: 100%;
 padding: 0 6px;
-text-align: center;
+text-align: justify;
 font-size: 1rem;
 }
 
 .btn{
   width: 50%;
-  margin: 25px auto 5px;
+  margin: auto;
   padding: 5px;
   background-color: #00b6d5;
   color: #fff;
