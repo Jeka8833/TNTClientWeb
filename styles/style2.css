@@ -30,10 +30,9 @@ justify-content: center;
   position: relative;
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  width: 280px;
-  height: 380px;
+  width: 340px;
+  height: 460px;
   padding: 6px;
   border: 1px solid #bababa;
   border-radius: 20px;
@@ -51,12 +50,6 @@ font-size: 2.4rem;
 font-weight: 400;
 }
 
-.donate_block h3{
-opacity: 0.5;
-font-size: 1.5rem;
-font-weight: 400;
-}
-
 .donate_block p{
 width: 100%;
 padding: 0 6px;
@@ -65,6 +58,48 @@ font-size: 1rem;
 }
 
 .donate_block input{
-width: 180px;
+width: 100%;
 position: relative;
+border-radius: 5px;
+}
+
+.donate_block form{
+margin-top: 20px;
+}
+
+.text{
+height: 30px;
+margin-top: 30px;
+}
+
+h4{
+width: 100%;
+padding-left: 6px;
+text-align: left;
+height: 0;
+}
+
+#disable{
+pointer-events: none;
+}
+
+#custom{
+display: none;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+input{
+padding-left: 6px;
+}
+
+.error{
+color: red;
+border: 1px solid red;
+}
+
+.accept{
+color: green;
+border: 1px solid green;
 }
