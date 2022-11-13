@@ -103,3 +103,22 @@ border: 1px solid red;
 color: green;
 border: 1px solid green;
 }
+
+.error2{
+color: red;
+}
+
+.accept2{
+color: green;
+}
+
+.mess{
+display: flex;
+box-sizing: border-box;
+padding-left: 6px;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+width: 100%;
+}
