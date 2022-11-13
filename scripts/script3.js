@@ -112,9 +112,7 @@ mess.setAttribute('class','error2');
 }
 }
 
-form[0].onclick = function(){
-alert(custom.value);
-}
+
 /*CUSTOM*/
 
 
