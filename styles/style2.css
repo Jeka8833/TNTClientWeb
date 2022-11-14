@@ -12,7 +12,7 @@
 
 body{
 font-family: 'Inter', sans-serif;
-background: radial-gradient(666px at 0.4% 48%, rgb(202, 204, 227) 0%, rgb(89, 89, 99) 97.5%);
+background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
 .display{
@@ -110,15 +110,4 @@ color: red;
 
 .accept2{
 color: green;
-}
-
-.mess{
-display: flex;
-box-sizing: border-box;
-padding-left: 6px;
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-width: 100%;
 }

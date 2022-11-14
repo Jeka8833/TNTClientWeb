@@ -15,17 +15,18 @@
 
 <body>
 <div class="display">
-<input id="custom">
+<input id="custom" value="">
 <div class="donate_block">
+
 <h1>Donate form</h1>
 <p class="text">
 You can support the existence of the project financially; the money will go to pay for servers and possibly for coffee.
 </p>
 
 <h4>Minecraft name</h4>
-<input id="name" placeholder="Username">
+<input id="name" required placeholder="Username">
 <h4>Email</h4>
-<input type="email" placeholder="E-mail" id="email">
+<input type="email" required placeholder="E-mail" id="email">
 <h4>Discord</h4>
 <input id="discord" placeholder="Discord">
   <form action="https://www.paypal.com/donate" method="post" target="_top" id="disable">
@@ -33,10 +34,8 @@ You can support the existence of the project financially; the money will go to p
   <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
   <img alt="" border="0" src="https://www.paypal.com/en_UA/i/scr/pixel.gif" width="1" height="1" />
   </form>
-<div class="mess" id="mess"></div>
 </div>
 </div>
-
 </body>
 
 </html>
