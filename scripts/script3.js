@@ -1,7 +1,7 @@
   window.onload = function(){
 
     let obj = [];
-    let custom = document.getElementById("custom");
+    let custom = document.getElementById("test");
     /*EMAIL*/
     const EMAIL_REGEXP = /^\S+@\S+\.\S+$/;
 
@@ -81,7 +81,7 @@
 
   email.onchange = function(){
   if(email.classList.contains("accept") == true && name.classList.contains("accept")  && String(JSON.stringify(obj).slice(2, -2)).length <= 254){
-  document.getElementById("custom").value = String(obj);
+  document.getElementById("test").value = String(obj);
   form[0].removeAttribute('id');
   if(obj[1] == undefined || discord.value == ""){obj[1] = "";}
   custom.setAttribute("value",String(JSON.stringify(obj).slice(2, -2)));
@@ -96,7 +96,7 @@
   }
   name.onchange = function(){
   if(email.classList.contains("accept") == true && name.classList.contains("accept") && String(JSON.stringify(obj).slice(2, -2)).length <= 254){
-  document.getElementById("custom").value = String(obj);
+  document.getElementById("test").value = String(obj);
   form[0].removeAttribute('id');
   if(obj[1] == undefined || discord.value == ""){obj[1] = "";}
   custom.setAttribute("value",String(JSON.stringify(obj).slice(2, -2)));
@@ -111,7 +111,7 @@
   }
   discord.onchange = function(){
   if(email.classList.contains("accept") == true && name.classList.contains("accept")  && String(JSON.stringify(obj).slice(2, -2)).length <= 254){
-  document.getElementById("custom").value = String(obj);
+  document.getElementById("test").value = String(obj);
   form[0].removeAttribute('id');
   if(obj[1] == undefined || discord.value == ""){obj[1] = "";}
   custom.setAttribute("value",String(JSON.stringify(obj).slice(2, -2)));
