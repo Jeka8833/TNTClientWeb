@@ -84,7 +84,7 @@ window.onload = function () {
             callback({"name": playerName, "uuid": null});
             return;
         }
-        $.getJSON("https://api.adshcon.app/mojang/v2/user/" + playerName)
+        $.getJSON("https://api.ashcon.app/mojang/v2/user/" + playerName)
             .done(function (json) {
                 if (json['uuid'] === undefined) {
                     showError(0);
