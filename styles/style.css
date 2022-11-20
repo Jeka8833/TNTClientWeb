@@ -1,5 +1,5 @@
-.off {
-    display: none;
+body {
+    font-family: 'Inter', sans-serif;
 }
 
 *,
@@ -8,35 +8,20 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
+hr {
+    border: none;
 }
-
-.active {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.4;
-    z-index: 2000;
-}
-
-.back_black {
-    display: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 50%;
-    z-index: 2000;
-}
-
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+.off {
+    display: none;
 }
 
 .wrapper1 {
@@ -142,10 +127,6 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1000;
 }
 
-h1 {
-    font-size: 4rem;
-}
-
 .head_inner h1 {
     height: 20px;
     color: #fff;
@@ -173,16 +154,6 @@ h1 {
 
 .head_inner a:hover {
     background-color: #0096D8;
-}
-
-.desc {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid red;
 }
 
 .FAQ {
@@ -216,15 +187,6 @@ h1 {
     opacity: 0.8;
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-#pl1,
-#pl2,
-#pl3,
-#pl4,
-#pl5,
-#pl6,
-#pl1_1 {
 }
 
 .cross {
@@ -364,10 +326,6 @@ h1 {
     justify-content: center;
 }
 
-.contact .row {
-    width: 100%;
-}
-
 .block_contact {
     position: relative;
     display: flex;
@@ -472,127 +430,6 @@ h1 {
     border: 1px solid black;
 }
 
-@media screen and (max-width: 400px) {
-    html {
-        font-size: 8px;
-    }
-
-    .head_inner {
-        width: 220px;
-        height: 201px;
-    }
-}
-
-@media screen and (min-width: 400px) and (max-width: 700px) {
-}
-
-@media screen and (min-width: 700px) and (max-width: 1000px) {
-}
-
-@media screen and (min-width: 400px) and (max-width: 1000px) {
-    html {
-        font-size: 12px;
-    }
-
-    .rec {
-        top: 60px;
-    }
-
-    #lic_inner {
-        width: 325px;
-        height: 450px;
-        margin: auto;
-    }
-}
-
-@media screen and (min-width: 1000px) and (max-width: 1600px) {
-    html {
-        font-size: 10px;
-    }
-}
-
-@media screen and (min-width: 1600px) {
-    html {
-        font-size: 15px;
-    }
-
-    .block_load {
-        width: 365px;
-    }
-
-    .head_inner {
-        width: 400px;
-        height: 301px;
-    }
-
-    .rec {
-        top: 80px;
-    }
-
-    .block_contact {
-        width: 365px;
-    }
-
-    .cline p {
-        font-size: 1.6rem;
-    }
-
-    #lic_inner {
-        width: 395px;
-        height: 500px;
-        margin: auto;
-    }
-
-    #btn4,
-    #btn4_2,
-    #btn4_3,
-    #btn5 {
-        width: 136px;
-    }
-
-    #btn6 {
-    }
-
-    .plus {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    .head_image {
-        background-position: center;
-    }
-}
-
-@media screen and (max-width: 1224px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-        align-items: stretch;
-    }
-
-    .block_contact {
-        margin-top: 24px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-#btn {
-}
-
-#dark {
-}
-
-#lic {
-}
-
-#lic_inner {
-}
-
 #lic_inner .line {
     text-align: center;
     font-size: 2rem;
@@ -602,11 +439,6 @@ h1 {
     width: 96%;
     font-size: 1.6rem;
     text-align: justify;
-}
-
-#btn4,
-#btn4_2,
-#btn4_3 {
 }
 
 .del {
@@ -737,4 +569,104 @@ h1 {
 
 .social_block {
     display: grid;
+}
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 8px;
+    }
+
+    .head_inner {
+        width: 220px;
+        height: 201px;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 1000px) {
+    html {
+        font-size: 12px;
+    }
+
+    .rec {
+        top: 60px;
+    }
+
+    #lic_inner {
+        width: 325px;
+        height: 450px;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1600px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    html {
+        font-size: 15px;
+    }
+
+    .block_load {
+        width: 365px;
+    }
+
+    .head_inner {
+        width: 400px;
+        height: 301px;
+    }
+
+    .rec {
+        top: 80px;
+    }
+
+    .block_contact {
+        width: 365px;
+    }
+
+    .cline p {
+        font-size: 1.6rem;
+    }
+
+    #lic_inner {
+        width: 395px;
+        height: 500px;
+        margin: auto;
+    }
+
+    #btn4,
+    #btn4_2,
+    #btn4_3,
+    #btn5 {
+        width: 136px;
+    }
+
+    .plus {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .head_image {
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 1224px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .block_contact {
+        margin-top: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
