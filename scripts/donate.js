@@ -6,22 +6,24 @@ window.onload = function () {
     const nameCrash = document.getElementById('name_crash');
     const nameCrashHeader = document.getElementById('name_crash_header');
     const nameCrashBody = document.getElementById('name_crash_body');
-    const tooltipHelpElement = document.getElementById('tooltip_help');
-
-    const tooltipHelp = new bootstrap.Tooltip(tooltipHelpElement);
+    const tooltipHelp = new bootstrap.Tooltip(document.getElementById('tooltip_help'));
 
     let playerCash = {};
+
+    const getRequest = getQueryVariable('name');
+    if (getRequest) {
+        nameInput.value = getRequest;
+        nameInput.dispatchEvent(new Event("change"));
+        getMinecraftName(nameInput.value, function (data) {
+            nameState(data['uuid']);
+        });
+    }
 
     nameInput.addEventListener('change', () => {
         getMinecraftName(nameInput.value, function (data) {
             if (data['name'] === nameInput.value) {
                 playerCash = data;
-                if (data['uuid'] === null) {
-                    nameInput.classList.add("is-invalid");
-                } else {
-                    nameInput.classList.remove("is-invalid");
-                }
-                updateErrorStateIfEmpty();
+                nameState(data['uuid']);
             }
         });
     });
@@ -51,8 +53,16 @@ window.onload = function () {
         }
 
         const email = getEmail();
+        if (!email) {
+            emailInput.classList.add("is-invalid");
+            return event.preventDefault();
+        }
+
         const discord = getDiscord();
-        if (!email || discord === null) return event.preventDefault();
+        if (discord === null) {
+            discordInput.classList.add("is-invalid");
+            return event.preventDefault();
+        }
 
         let uuid = playerCash['uuid'];
         if (uuid === null) return event.preventDefault();
@@ -64,6 +74,7 @@ window.onload = function () {
             });
             $.ajaxSetup({async: true});
         }
+        nameState(uuid);
         if (!uuid) return event.preventDefault();
 
         const encodedJson = JSON.stringify([uuid.replaceAll('-', '').toLowerCase(), discord, email])
@@ -79,6 +90,15 @@ window.onload = function () {
         customField.value = encodedJson;
     });
 
+    function nameState(uuid) {
+        if (uuid === null) {
+            nameInput.classList.add("is-invalid");
+        } else {
+            nameInput.classList.remove("is-invalid");
+        }
+        updateErrorStateIfEmpty();
+    }
+    
     function getMinecraftName(playerName, callback) {
         if (!/^[a-zA-Z0-9_]{3,16}$/.test(playerName)) {
             callback({"name": playerName, "uuid": null});
@@ -130,6 +150,17 @@ window.onload = function () {
         } else {
             tooltipHelp.disable();
         }
+    }
+
+    function getQueryVariable(variable) {
+        const vars = window.location.search
+            .substring(1)
+            .split("&");
+        for (let i = 0; i < vars.length; i++) {
+            const pair = vars[i].split("=");
+            if (pair[0] === variable) return pair[1];
+        }
+        return null;
     }
 
     function showError(type) {
