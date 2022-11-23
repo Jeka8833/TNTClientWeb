@@ -13,7 +13,6 @@ window.onload = function () {
     const getRequest = getQueryVariable('name');
     if (getRequest) {
         nameInput.value = getRequest;
-        nameInput.dispatchEvent(new Event("change"));
         getMinecraftName(nameInput.value, function (data) {
             nameState(data['uuid']);
         });
