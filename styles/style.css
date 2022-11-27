@@ -114,6 +114,7 @@ h1 {
     background-image: url("../images/main.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     opacity: 0.4;
 }
 
@@ -154,14 +155,6 @@ h1 {
 
 .head_inner a:hover {
     background-color: #0096D8;
-}
-
-.FAQ {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: left;
-    padding-bottom: 10px;
 }
 
 .FAQ h1 {
@@ -224,7 +217,6 @@ h1 {
     flex-wrap: wrap;
     width: 100%;
     justify-content: space-around;
-    transition: 0.5s linear;
 }
 
 .block_load {
@@ -232,19 +224,6 @@ h1 {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    align-items: stretch;
-    width: 285px;
-    padding: 6px;
-    border: 1px solid #bababa;
-    border-radius: 20px;
-    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    transition: 0.5s linear;
-
-    margin-top: 24px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .block_load:hover {
@@ -331,14 +310,6 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 285px;
-    padding: 6px;
-    margin-top: 24px;
-    border: 1px solid #bababa;
-    border-radius: 20px;
-    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
 }
 
 .block_contact img {
@@ -354,7 +325,6 @@ h1 {
 }
 
 .cont_text {
-    display: flex;
     padding: 0 2%;
     text-align: justify;
     font-size: 1.5rem;
@@ -389,45 +359,8 @@ h1 {
     font-size: 15px;
 }
 
-.Donate {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    text-align: left;
-    padding-bottom: 10px;
-}
-
 .Donate h1 {
     text-align: center;
-}
-
-.Donate .row {
-    justify-content: center;
-}
-
-.donate_block {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 285px;
-    height: 420px;
-    padding: 6px;
-    border: 1px solid #bababa;
-    border-radius: 20px;
-    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
-}
-
-.donate_block h2 {
-    text-align: center;
-}
-
-.Donate img {
-    border-radius: 50%;
-    border: 1px solid black;
 }
 
 #lic_inner .line {
@@ -571,6 +504,37 @@ h1 {
     display: grid;
 }
 
+.card-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.card {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    width: 285px;
+    border: 1px solid #bababa;
+    border-radius: 20px;
+    margin-top: 24px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 6px;
+    -webkit-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    margin-top: 10px;
+    border-radius: 50%;
+}
+
 @media screen and (max-width: 400px) {
     html {
         font-size: 8px;
@@ -609,10 +573,6 @@ h1 {
         font-size: 15px;
     }
 
-    .block_load {
-        width: 365px;
-    }
-
     .head_inner {
         width: 400px;
         height: 301px;
@@ -620,10 +580,6 @@ h1 {
 
     .rec {
         top: 80px;
-    }
-
-    .block_contact {
-        width: 365px;
     }
 
     .cline p {
@@ -647,26 +603,8 @@ h1 {
         width: 24px;
         height: 24px;
     }
-}
 
-@media screen and (max-width: 1000px) {
-    .head_image {
-        background-position: center;
-    }
-}
-
-@media screen and (max-width: 1224px) {
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-        align-items: stretch;
-    }
-
-    .block_contact {
-        margin-top: 24px;
-        margin-left: auto;
-        margin-right: auto;
+    .card {
+        width: 365px;
     }
 }
