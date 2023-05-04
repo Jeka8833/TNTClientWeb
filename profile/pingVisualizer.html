@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ping Visualizer | TNTPanel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha3/css/bootstrap.min.css"
+          integrity="sha512-iGjGmwIm1UHNaSuwiNFfB3+HpzT/YLJMiYPKzlQEVpT6FWi5rfpbyrBuTPseScOCWBkRtsrRIbrTzJpQ02IaLA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js"
+            integrity="sha512-vIAkTd3Ary9rwf0lrb9kIipyIkavKpYGnyopBXs6SiLfNSzAvCNvvQvKwBV5Xlag4O8oZpZ5U5n4bHoErGQxjw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.4/font/bootstrap-icons.min.css"
+          integrity="sha512-yU7+yXTc4VUanLSjkZq+buQN3afNA4j2ap/mxvdr440P5aW9np9vIr2JMZ2E5DuYeC9bAoH9CuCR7SJlXAa4pg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/jquery-csv@1.0.21/src/jquery.csv.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
+            integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+    <script src="scripts/tntClientServer.js"></script>
+    <script src="scripts/pingDecoder.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/themes.js"></script>
+</head>
+<body>
+<div class="min-vh-100">
+    <header class="sticky-top mb-3">
+        <nav class="navbar bg-body-tertiary navbar-expand-lg">
+            <div class="container-xxl">
+                <a class="navbar-brand">
+                    <img src="../images/favicon-32x32.png" width="32" height="32" alt="TNTPanel"> TNTPanel
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-lg-auto">
+                        <hr class="d-lg-none text-white-50">
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-current="page" href="#">Statistic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">Cape</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-current="page" href="#">Admin panel</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Util
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item active" href="pingVisualizer.html">Ping Visualizer</a></li>
+                            </ul>
+                        </li>
+                        <hr class="d-lg-none text-white-50">
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle theme-icon-active" type="button"
+                               data-bs-toggle="dropdown">
+                                <div class="d-none d-lg-block" style="padding-top: 2px"></div>
+                                <i class="bi bi-diamond-half opacity-50"></i>
+                                <span class="d-lg-none">Toggle theme</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg">
+                                <li>
+                                    <a type="button" class="dropdown-item hstack" data-bs-theme-value="light">
+                                        <i class="bi bi-brightness-high-fill opacity-50"></i>
+                                        <p class="m-0 ms-2">Light</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a type="button" class="dropdown-item hstack" data-bs-theme-value="dark">
+                                        <i class="bi bi-moon-stars-fill opacity-50"></i>
+                                        <p class="m-0 ms-2">Dark</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a type="button" class="dropdown-item hstack" data-bs-theme-value="auto">
+                                        <i class="bi bi-diamond-half opacity-50"></i>
+                                        <p class="m-0 ms-2">Auto</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+                            <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+                            <hr class="d-lg-none my-2 text-white-50">
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <img class="rounded-circle"
+                                     src="https://crafatar.com/avatars/6bd6e833-a80a-430e-9029-4786368811f9?size=32&overlay"
+                                     alt="" id="avatarImage"/>
+                                <span class="d-lg-none" id="avatarUsername">Loading...</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg">
+                                <li>
+                                    <button class="dropdown-item" type="button" id="logoutBtn">Sign out</button>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-xxl">
+        <label for="pingFile" class="form-label">The file you want to view:</label>
+        <input type="file" class="form-control mb-3" id="pingFile" accept=".csv">
+        <p class="mb-5">You can see what @pingrecorder recorded, the recording is stored in the folder: .minecraft/TNTClients-records/PingRecorder/</p>
+
+        <div id="plotBlocks" class="invisible">
+            <h1>Hypixel Ping</h1>
+            <hr>
+            <canvas id="hypixelPing"></canvas>
+
+            <h1>My System Ping</h1>
+            <hr>
+            <canvas id="myPing"></canvas>
+
+            <h1>Hypixel Download Speed</h1>
+            <hr>
+            <canvas id="downloadSpeed"></canvas>
+
+            <h1>Hypixel Upload Speed</h1>
+            <hr>
+            <canvas id="uploadSpeed"></canvas>
+
+            <h1>DJ Ping</h1>
+            <hr>
+            <canvas id="DJPing"></canvas>
+
+            <h1>Block Reaction Time</h1>
+            <hr>
+            <canvas id="brt"></canvas>
+        </div>
+    </main>
+</div>
+
+<div class="container-xxl flex-grow-0 flex-shrink-1 border-top mt-3">
+    <footer class="py-1 m-1">
+        <div class="d-flex align-items-center flex-column flex-sm-row justify-content-between">
+            <p class="m-0">Created by: Jeka8833, 2023 year</p>
+            <a class="link-secondary fs-4" href="#"><i class="bi bi-github"></i></a>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
