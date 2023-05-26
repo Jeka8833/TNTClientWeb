@@ -1,15 +1,14 @@
 addAuthenticationErrorListener(function () {
-    //window.location.replace("/profile/login/fail.html");
+    window.location.replace(webPageRootUrl + "/profile/login/fail.html");
 })
 
 addServerErrorListener(function () {
-    alert("Server error");
+    $("#errorBox").removeClass("d-none");
 })
 
-const userUUID = "403e6cb7a6ca440a80417fb1e579b5a5";
-//const userUUID = getUser();
+const userUUID = getUser();
 
-$(function() {
+$(function () {
     uuidToName(userUUID, function (name) {
         $("#avatarUsername").text(name);
     })
@@ -18,7 +17,7 @@ $(function() {
 
     $("#logoutBtn").click(function () {
         logout(function (redirect) {
-            window.location.replace("/profile/login/fail.html");
+            window.location.replace(webPageRootUrl + "/profile/login/fail.html");
         })
     });
 });

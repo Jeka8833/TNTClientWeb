@@ -1,22 +1,22 @@
-login(userUUID, userUUID, function (data) {
-
-})
-
 let playerSettingsOld = {useTntCape: false};
 let playerSettingsNew = {useTntCape: false};
 let uploadedCape = undefined;
 readSettings();
 
-function updateSettings() {
-    playerSettingsOld = Object.assign({}, playerSettingsNew);
-    playerSettingsNew["timeout"] = Date.now();
-    try {
-        localStorage.setItem("config", JSON.stringify(playerSettingsNew));
-    } catch (e) {
-        console.error(e);
-    }
-
-    updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (data) {
+function updateSettings(callback) {
+    updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
+        callback(isOk)
+        if (isOk) {
+            playerSettingsOld = Object.assign({}, playerSettingsNew);
+            playerSettingsNew["timeout"] = Date.now();
+            try {
+                localStorage.setItem("config", JSON.stringify(playerSettingsNew));
+            } catch (e) {
+                console.error(e);
+            }
+        } else {
+            localStorage.removeItem("config")
+        }
     });
 }
 
@@ -236,9 +236,10 @@ $(function () {
     });
 
     $("#saveChanges").click(function () {
-        updateSettings();
-        updateDefaultUserSkin();
-        checkChanges();
+        updateSettings(function (isOk) {
+            updateDefaultUserSkin();
+            checkChanges();
+        });
     });
     $("#discardChanges").click(function () {
         readSettings();

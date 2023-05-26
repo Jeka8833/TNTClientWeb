@@ -12,7 +12,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js"
             integrity="sha512-vIAkTd3Ary9rwf0lrb9kIipyIkavKpYGnyopBXs6SiLfNSzAvCNvvQvKwBV5Xlag4O8oZpZ5U5n4bHoErGQxjw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+            integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="../scripts/themes.js"></script>
+    <script src="../scripts/tntClientServer.js"></script>
+    <script src="../scripts/loginPage.js"></script>
 </head>
 <body>
 <div class="d-flex flex-column overflow-hidden min-vh-100 vh-100">
@@ -38,7 +45,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" href="/TNTClient/">Home</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle theme-icon-active" href="#" role="button"
@@ -74,6 +81,7 @@
             </div>
         </nav>
     </header>
+
     <main role="main" class="flex-grow-1 overflow-auto">
         <div class="d-flex align-items-center justify-content-center flex-column h-100">
             <div class="spinner-border" role="status" style="width: 7rem; height: 7rem;">
@@ -82,6 +90,7 @@
             <p class="pt-3">Loading... Please wait</p>
         </div>
     </main>
+
     <div class="container-xxl flex-grow-0 flex-shrink-1 border-top">
         <footer class="py-1 m-1">
             <div class="d-flex align-items-center flex-column flex-sm-row justify-content-between">
@@ -91,18 +100,18 @@
         </footer>
     </div>
 </div>
-<div aria-live="polite" aria-atomic="true" class="bg-body-secondary position-relative">
-    <div class="toast-container p-3 bottom-0 end-0">
+
+<div aria-live="polite" aria-atomic="true" id="errorBox" class="bg-body-secondary position-relative d-none">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div class="toast align-items-center bg-danger show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex shadow-lg">
                 <div class="toast-body text-light">
-                    Server is down. Trying reconnect
+                    Server is down. You can try reloading the website.
                 </div>
                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
         </div>
     </div>
 </div>
-<script src="../scripts/themes.js"></script>
 </body>
 </html>
