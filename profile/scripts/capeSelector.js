@@ -5,7 +5,6 @@ readSettings();
 
 function updateSettings(callback) {
     updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
-        callback(isOk)
         if (isOk) {
             playerSettingsOld = Object.assign({}, playerSettingsNew);
             playerSettingsNew["timeout"] = Date.now();
@@ -17,6 +16,7 @@ function updateSettings(callback) {
         } else {
             localStorage.removeItem("config")
         }
+        callback(isOk)
     });
 }
 
@@ -164,7 +164,6 @@ function resizeCape(imageBase64, callback) {
         canvas.height = newHeight;
 
         ctx.drawImage(image, 0, 0, image.width, image.height);
-        console.log(canvas.toDataURL());
         callback(canvas.toDataURL());
     };
     image.src = imageBase64;
@@ -317,11 +316,13 @@ $(function () {
                     const capeUrl = "https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capes/" +
                         userUUID + ".png";
 
-                    tntClientSkin.reset();
-                    tntClientSkin = createSkin(tntClientSkinElement, capeUrl, false);
+                    resizeCape(capeUrl, function (image) {
+                        tntClientSkin.reset();
+                        tntClientSkin = createSkin(tntClientSkinElement, image, false);
 
-                    tntClientSkinEdit.reset();
-                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, capeUrl, false);
+                        tntClientSkinEdit.reset();
+                        tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+                    });
                 }
             });
         }
@@ -344,8 +345,10 @@ $(function () {
                     const capeUrl = "https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capes/" +
                         userUUID + ".png";
 
-                    tntClientSkinEdit.reset();
-                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, capeUrl, false);
+                    resizeCape(capeUrl, function (image) {
+                        tntClientSkinEdit.reset();
+                        tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+                    });
                 }
             });
 
