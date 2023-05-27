@@ -1,4 +1,4 @@
-const serverHubUrl = "http://api.tntclient.jeka8833.pp.ua/";
+const serverHubUrl = "https://tntclient.jeka8833.pp.ua/";
 const webPageRootUrl = "/TNTClient";
 
 const authenticationError = [];
