@@ -6,13 +6,17 @@ readSettings();
 function updateSettings(callback) {
     updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
         if (isOk) {
-            playerSettingsOld = Object.assign({}, playerSettingsNew);
-            playerSettingsNew["timeout"] = Date.now();
-            try {
-                localStorage.setItem("config", JSON.stringify(playerSettingsNew));
-            } catch (e) {
-                console.error(e);
-            }
+            resizeCape(playerSettingsNew["cape"], function (image) {
+                playerSettingsNew["cape"] = image;
+                playerSettingsNew["timeout"] = Date.now();
+
+                playerSettingsOld = Object.assign({}, playerSettingsNew);
+                try {
+                    localStorage.setItem("config", JSON.stringify(playerSettingsNew));
+                } catch (e) {
+                    console.error(e);
+                }
+            });
         } else {
             localStorage.removeItem("config")
         }
