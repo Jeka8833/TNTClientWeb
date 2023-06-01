@@ -1,5 +1,5 @@
-let playerSettingsOld = {useTntCape: false};
-let playerSettingsNew = {useTntCape: false};
+let playerSettingsOld = {useTntCape: false, cape: ""};
+let playerSettingsNew = {useTntCape: false, cape: ""};
 let uploadedCape = undefined;
 readSettings();
 
@@ -16,11 +16,12 @@ function updateSettings(callback) {
                 } catch (e) {
                     console.error(e);
                 }
+                callback(isOk)
             });
         } else {
             localStorage.removeItem("config")
+            callback(isOk)
         }
-        callback(isOk)
     });
 }
 

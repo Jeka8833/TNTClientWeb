@@ -1,5 +1,6 @@
-const serverHubUrl = "https://tntclient.jeka8833.pp.ua/";
-const webPageRootUrl = "/TNTClient";
+const debugUrl = false;
+const serverHubUrl = debugUrl ? "http://localhost:80/": "https://tntclient.jeka8833.pp.ua/";
+const webPageRootUrl = debugUrl ? "/TNTClientWeb": "/TNTClient";
 
 const authenticationError = [];
 const serverError = [];
