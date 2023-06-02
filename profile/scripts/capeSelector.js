@@ -175,6 +175,9 @@ function resizeCape(imageBase64, callback) {
 }
 
 $(function () {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
     const vanillaSelectBtn = $("#vanillaSelectBtn");
     const tntClientSelectBtn = $("#tntClientSelectBtn");
     const saveToast = $("#saveToast");
@@ -185,6 +188,8 @@ $(function () {
         if (state) {
             allowEdit = true;
             tntClientSelectBtn.removeClass("disabled");
+            $("#buyCape1").tooltip('dispose')
+            $("#buyCape2").tooltip('dispose')
         }
         changeEditCape();
     });
