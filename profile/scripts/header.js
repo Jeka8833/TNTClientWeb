@@ -13,7 +13,7 @@ $(function () {
         $("#avatarUsername").text(name);
     })
 
-    $("#avatarImage").attr("src", "https://crafatar.com/avatars/" + userUUID + "?size=32&overlay");
+    $("#avatarImage").attr("src", "https://mineskin.eu/helm/" + userUUID + "/32");
 
     $("#logoutBtn").click(function () {
         logout(function (redirect) {
