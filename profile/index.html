@@ -198,25 +198,32 @@
                                     </div>
                                     <h3 class="mt-5">Load custom cape</h3>
                                     <hr>
-                                    <input type="file" class="form-control mb-3" id="capeFile" accept="image/png">
+                                    <input type="file" class="form-control mb-3" id="capeFile"
+                                           accept="image/png, image/jpeg, image/jpg">
 
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="fromInternet"
+                                               checked>
+                                        <label class="form-check-label" for="fromInternet">
+                                            My photo is taken from the internet and uses the wrong markup, it needs to
+                                            be converted to a cape.
+                                        </label>
+                                    </div>
                                     <h3 class="mt-5">Frequent questions</h3>
                                     <hr>
                                     <ul>
                                         <li><a href="#" type="button" data-bs-toggle="offcanvas"
-                                               data-bs-target="#helpCape"
-                                               aria-controls="helpCape">I want to draw myself a cape, where can I get a
-                                            template?</a></li>
+                                               data-bs-target="#helpCape" aria-controls="helpCape">I want to draw myself
+                                            a cape, where can I get a template?</a></li>
                                         <li><a href="https://livzmc.net/minecraft-capes">I want a ready-made cape, where
-                                            can
-                                            I choose?</a></li>
+                                            can I choose?</a></li>
                                     </ul>
                                 </div>
                                 <div class="d-flex justify-content-end w-100 mt-3">
-                                    <div class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="left"
-                                         id="buyCape2"
+                                    <div class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+                                         data-bs-placement="left" id="buyCape2"
                                          data-bs-title="You haven't bought a cape.">
-                                    <button class="btn btn-success disabled" id="editSave">Save</button>
+                                        <button class="btn btn-success disabled" id="editSave">Save</button>
                                     </div>
                                 </div>
                             </div>

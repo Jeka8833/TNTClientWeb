@@ -174,6 +174,34 @@ function resizeCape(imageBase64, callback) {
     image.src = imageBase64;
 }
 
+function resizeCapeRaw(imageBase64, callback) {
+    const image = new Image();
+    image.crossOrigin = "anonymous";
+    image.onload = function () {
+        const ratio = image.width / image.height;
+
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 1024;
+        canvas.height = 512;
+
+        if (ratio < 1) {
+            ctx.drawImage(image, 0, (16 / (272 + 16)) * (image.width / ratio), image.width, (256 / (272 + 16)) * (image.width / ratio), 0, 16, 192, 256);  // Left Front Right
+            ctx.drawImage(image, (16 / 192) * image.width, 0, (160 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), 16, 0, 160, 16);  // Top
+            ctx.drawImage(image, (16 / 192) * image.width, (272 / (272 + 16)) * (image.width / ratio), (160 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), 176, 0, 160, 16);  // Bottom
+            ctx.drawImage(image, (16 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), (160 / 192) * image.width, (256 / (272 + 16)) * (image.width / ratio), 192, 16, 160, 256);  // Back
+        } else {
+            ctx.drawImage(image, 0, (16 / (272 + 16)) * image.height, (image.height / ratio), (256 / (272 + 16)) * image.height, 0, 16, 192, 256);  // Left Front Right
+            ctx.drawImage(image, (16 / 192) * (image.height / ratio), 0, (160 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, 16, 0, 160, 16);  // Top
+            ctx.drawImage(image, (16 / 192) * (image.height / ratio), (272 / (272 + 16)) * image.height, (160 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, 176, 0, 160, 16);  // Bottom
+            ctx.drawImage(image, (16 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, (160 / 192) * (image.height / ratio), (256 / (272 + 16)) * image.height, 192, 16, 160, 256);  // Back
+        }
+
+        callback(canvas.toDataURL());
+    };
+    image.src = imageBase64;
+}
+
 $(function () {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -275,11 +303,19 @@ $(function () {
         const reader = new FileReader();
         reader.readAsDataURL(capeFileElement.files[0]);
         reader.onload = function (e) {
-            resizeCape(e.target.result, function (image) {
-                changeEditCape(image);
-                tntClientSkinEdit.reset();
-                tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
-            });
+            if (document.getElementById('fromInternet').checked) {
+                resizeCapeRaw(e.target.result, function (image) {
+                    changeEditCape(image);
+                    tntClientSkinEdit.reset();
+                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+                });
+            } else {
+                resizeCape(e.target.result, function (image) {
+                    changeEditCape(image);
+                    tntClientSkinEdit.reset();
+                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+                });
+            }
         };
     });
 
