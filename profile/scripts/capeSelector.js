@@ -183,11 +183,11 @@ function resizeCapeRaw(imageBase64, callback) {
         canvas.width = 1024;
         canvas.height = 512;
 
+        const blurValue = $("#blur").val()
+        ctx.filter = "blur(" + blurValue + "px)";
+
         if (image.height > image.width) {
             const capeHeight = (image.width * 256) / 192;
-            const blurValue = $("#blur").val()
-
-            ctx.filter = "blur(" + blurValue + "px)";
 
             ctx.drawImage(image,
                 0, (16 / (272 + 16)) * capeHeight, image.width, (256 / (272 + 16)) * capeHeight,
