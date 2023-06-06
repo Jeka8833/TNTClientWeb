@@ -199,9 +199,9 @@
                                     <h3 class="mt-5">Load custom cape</h3>
                                     <hr>
                                     <input type="file" class="form-control mb-3" id="capeFile"
-                                           accept="image/png, image/jpeg, image/jpg">
+                                           onclick="this.value=null;" accept="image/png, image/jpeg, image/jpg">
 
-                                    <div class="form-check">
+                                    <div class="form-check mb-3">
                                         <input class="form-check-input" type="checkbox" value="" id="fromInternet"
                                                checked>
                                         <label class="form-check-label" for="fromInternet">
@@ -209,6 +209,12 @@
                                             be converted to a cape.
                                         </label>
                                     </div>
+                                    <div id="blurBox" class="visually-hidden">
+                                        <label for="blur" class="form-label" id="blurText">Blur image</label>
+                                        <input type="range" class="form-range" min="0" max="3" step="0.1" value="0.7"
+                                               id="blur">
+                                    </div>
+
                                     <h3 class="mt-5">Frequent questions</h3>
                                     <hr>
                                     <ul>
@@ -295,7 +301,7 @@
             <strong class="me-auto">Save</strong>
         </div>
         <div class="toast-body">
-            Do you want to save the changes? After saving, you will see the changes on your cape in 15-30 minutes.
+            Do you want to save the changes? After saving, you will see the changes on your cape in 5 minutes.
             <div class="mt-2">
                 <button type="button" class="btn btn-primary btn-sm" id="saveChanges">Save</button>
                 <button type="button" class="btn btn-primary btn-sm" id="discardChanges">Reset all</button>

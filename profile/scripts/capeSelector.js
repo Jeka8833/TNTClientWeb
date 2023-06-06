@@ -31,7 +31,7 @@ function readSettings() {
 
     const configParsed = JSON.parse(localStorage.getItem("config"));
     if (configParsed != null && configParsed.timeout !== undefined &&
-        Date.now() - configParsed.timeout < 30 * 60 * 1000) {
+        Date.now() - configParsed.timeout < 5 * 60 * 1000) {
         delete configParsed.timeout;
 
         playerSettingsOld = Object.assign({}, configParsed);
@@ -178,23 +178,44 @@ function resizeCapeRaw(imageBase64, callback) {
     const image = new Image();
     image.crossOrigin = "anonymous";
     image.onload = function () {
-        const ratio = image.width / image.height;
-
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = 1024;
         canvas.height = 512;
 
-        if (ratio < 1) {
-            ctx.drawImage(image, 0, (16 / (272 + 16)) * (image.width / ratio), image.width, (256 / (272 + 16)) * (image.width / ratio), 0, 16, 192, 256);  // Left Front Right
-            ctx.drawImage(image, (16 / 192) * image.width, 0, (160 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), 16, 0, 160, 16);  // Top
-            ctx.drawImage(image, (16 / 192) * image.width, (272 / (272 + 16)) * (image.width / ratio), (160 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), 176, 0, 160, 16);  // Bottom
-            ctx.drawImage(image, (16 / 192) * image.width, (16 / (272 + 16)) * (image.width / ratio), (160 / 192) * image.width, (256 / (272 + 16)) * (image.width / ratio), 192, 16, 160, 256);  // Back
+        if (image.height > image.width) {
+            const capeHeight = (image.width * 256) / 192;
+            const blurValue = $("#blur").val()
+
+            ctx.filter = "blur(" + blurValue + "px)";
+
+            ctx.drawImage(image,
+                0, (16 / (272 + 16)) * capeHeight, image.width, (256 / (272 + 16)) * capeHeight,
+                0, 16, 192, 256);  // Left Front Right
+            ctx.drawImage(image,
+                (16 / 192) * image.width, 0, (160 / 192) * image.width, (16 / (272 + 16)) * capeHeight,
+                16, 0, 160, 16);  // Top
+            ctx.drawImage(image,
+                (16 / 192) * image.width, (272 / (272 + 16)) * capeHeight, (160 / 192) * image.width, (16 / (272 + 16)) * capeHeight,
+                176, 0, 160, 16);  // Bottom
+            ctx.drawImage(image,
+                (16 / 192) * image.width, (16 / (272 + 16)) * capeHeight, (160 / 192) * image.width, (256 / (272 + 16)) * capeHeight,
+                192, 16, 160, 256);  // Back
         } else {
-            ctx.drawImage(image, 0, (16 / (272 + 16)) * image.height, (image.height / ratio), (256 / (272 + 16)) * image.height, 0, 16, 192, 256);  // Left Front Right
-            ctx.drawImage(image, (16 / 192) * (image.height / ratio), 0, (160 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, 16, 0, 160, 16);  // Top
-            ctx.drawImage(image, (16 / 192) * (image.height / ratio), (272 / (272 + 16)) * image.height, (160 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, 176, 0, 160, 16);  // Bottom
-            ctx.drawImage(image, (16 / 192) * (image.height / ratio), (16 / (272 + 16)) * image.height, (160 / 192) * (image.height / ratio), (256 / (272 + 16)) * image.height, 192, 16, 160, 256);  // Back
+            const capeWidth = (image.height * 192) / 256;
+
+            ctx.drawImage(image,
+                0, (16 / (272 + 16)) * image.height, capeWidth, (256 / (272 + 16)) * image.height,
+                0, 16, 192, 256);  // Left Front Right
+            ctx.drawImage(image,
+                (16 / 192) * capeWidth, 0, (160 / 192) * capeWidth, (16 / (272 + 16)) * image.height,
+                16, 0, 160, 16);  // Top
+            ctx.drawImage(image,
+                (16 / 192) * capeWidth, (272 / (272 + 16)) * image.height, (160 / 192) * capeWidth, (16 / (272 + 16)) * image.height,
+                176, 0, 160, 16);  // Bottom
+            ctx.drawImage(image,
+                (16 / 192) * capeWidth, (16 / (272 + 16)) * image.height, (160 / 192) * capeWidth, (256 / (272 + 16)) * image.height,
+                192, 16, 160, 256);  // Back
         }
 
         callback(canvas.toDataURL());
@@ -222,6 +243,25 @@ $(function () {
         changeEditCape();
     });
 
+    $("#fromInternet").change(function () {
+        updateBlurText();
+    });
+
+    $(document).on('input', '#blur', function() {
+        updateBlurText();
+    });
+
+    function updateBlurText() {
+        if ($("#fromInternet").is(':checked')) {
+            $("#blurBox").removeClass("visually-hidden");
+        } else {
+            $("#blurBox").addClass("visually-hidden");
+        }
+
+        const blurValue = $("#blur").val()
+        $("#blurText").text("Image blur value ( " + Math.round(blurValue * 100) + "% ):");
+    }
+    updateBlurText();
 
     function checkChanges() {
         const hasChanges = !(playerSettingsNew["useTntCape"] === playerSettingsOld["useTntCape"] &&
