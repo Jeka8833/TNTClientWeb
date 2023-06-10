@@ -245,6 +245,7 @@ $(function () {
 
     $("#fromInternet").change(function () {
         updateBlurText();
+        window.dispatchEvent(new Event('resize'));
     });
 
     $(document).on('input', '#blur', function() {
