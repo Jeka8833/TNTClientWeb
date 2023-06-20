@@ -5,18 +5,21 @@ window.onload = function () {
     const pl4 = document.getElementById("pl4");
     const pl5 = document.getElementById("pl5");
     const pl6 = document.getElementById("pl6");
+    const pl7 = document.getElementById("pl7");
     const pl1_1 = document.getElementById("pl1_1");
     const pl2_1 = document.getElementById("pl2_1");
     const pl3_1 = document.getElementById("pl3_1");
     const pl4_1 = document.getElementById("pl4_1");
     const pl5_1 = document.getElementById("pl5_1");
     const pl6_1 = document.getElementById("pl6_1");
+    const pl7_1 = document.getElementById("pl7_1");
     const p1 = document.getElementById("p1");
     const p2 = document.getElementById("p2");
     const p3 = document.getElementById("p3");
     const p4 = document.getElementById("p4");
     const p5 = document.getElementById("p5");
     const p6 = document.getElementById("p6");
+    const p7 = document.getElementById("p7");
     const btn1 = document.getElementById("btn1");
     const btn2 = document.getElementById("btn2");
     const btn3 = document.getElementById("btn3");
@@ -59,6 +62,11 @@ window.onload = function () {
     pl6.onclick = function () {
         p6.classList.toggle("del");
         pl6_1.classList.toggle("cross");
+    }
+
+    pl7.onclick = function () {
+        p7.classList.toggle("del");
+        pl7_1.classList.toggle("cross");
     }
 
     btn1.onclick = function () {

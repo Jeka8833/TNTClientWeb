@@ -73,7 +73,7 @@ $(function () {
         const reader = new FileReader();
         reader.readAsText(capeFileElement.files[0]);
         reader.onload = function (e) {
-            var data = $.csv.toObjects(e.target.result, {
+            const data = $.csv.toObjects(e.target.result, {
                 separator: ';'
             });
 
