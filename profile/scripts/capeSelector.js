@@ -163,7 +163,10 @@ function readUserData(callback) {
 }
 
 function resizeCape(imageBase64, callback) {
-    if(imageBase64 === undefined) callback(undefined);
+    if (imageBase64 === undefined) {
+        callback(undefined);
+        return;
+    }
 
     const image = new Image();
     image.crossOrigin = "anonymous";
