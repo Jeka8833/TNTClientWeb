@@ -310,7 +310,11 @@
         <div class="toast-body">
             Do you want to save the changes? After saving, you will see the changes on your cape in 5 minutes.
             <div class="mt-2">
-                <button type="button" class="btn btn-primary btn-sm" id="saveChanges">Save</button>
+                <button type="button" class="btn btn-primary btn-sm" id="saveChanges">
+                    <span class="spinner-border spinner-border-sm visually-hidden" role="status" aria-hidden="true"
+                          id="saveSpinner"></span>
+                    Save
+                </button>
                 <button type="button" class="btn btn-primary btn-sm" id="discardChanges">Reset all</button>
             </div>
         </div>

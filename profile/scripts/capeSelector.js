@@ -3,8 +3,18 @@ let playerSettingsNew = {useTntCape: false, cape: ""};
 let uploadedCape = undefined;
 readSettings();
 
+function updateState(isLoading) {
+    if (isLoading) {
+        $("#saveSpinner").removeClass("visually-hidden");
+    } else {
+        $("#saveSpinner").addClass("visually-hidden");
+    }
+}
+
 function updateSettings(callback) {
+    updateState(true);
     updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
+        updateState(isOk);
         if (isOk) {
             resizeCape(playerSettingsNew["cape"], function (image) {
                 playerSettingsNew["cape"] = image;
@@ -37,7 +47,7 @@ function readSettings() {
         playerSettingsOld = Object.assign({}, configParsed);
         playerSettingsNew = Object.assign({}, configParsed);
 
-        changeSelectedTypeOfCape(playerSettingsOld["useTntCape"]);
+        changeSelectedTypeOfCape();
     } else {
         localStorage.removeItem("config");
 
@@ -45,17 +55,17 @@ function readSettings() {
             if (data !== undefined && data["capePriority"] === 2) {
                 playerSettingsOld["useTntCape"] = true;
                 playerSettingsNew["useTntCape"] = true;
-                changeSelectedTypeOfCape(true);
+                changeSelectedTypeOfCape();
             }
         });
     }
 }
 
-function changeSelectedTypeOfCape(isTntClient) {
+function changeSelectedTypeOfCape() {
     $(function () {
         const vanillaSelectBtn = $("#vanillaSelectBtn");
         const tntClientSelectBtn = $("#tntClientSelectBtn");
-        if (isTntClient) {
+        if (playerSettingsNew["useTntCape"]) {
             tntClientSelectBtn.addClass("btn-success");
             tntClientSelectBtn.removeClass("btn-primary");
             vanillaSelectBtn.removeClass("btn-success");
@@ -246,10 +256,16 @@ $(function () {
     $("#fromInternet").change(function () {
         updateBlurText();
         window.dispatchEvent(new Event('resize'));
+        updateUploadedSkin();
     });
 
-    $(document).on('input', '#blur', function() {
+    $(document).on('input', '#blur', function () {
         updateBlurText();
+    });
+
+    $(document).on('change', '#blur', function () {
+        updateBlurText();
+        updateUploadedSkin();
     });
 
     function updateBlurText() {
@@ -262,6 +278,7 @@ $(function () {
         const blurValue = $("#blur").val()
         $("#blurText").text("Image blur value ( " + Math.round(blurValue * 100) + "% ):");
     }
+
     updateBlurText();
 
     function checkChanges() {
@@ -314,7 +331,7 @@ $(function () {
     });
 
     $("#saveChanges").click(function () {
-        updateSettings(function (isOk) {
+        updateSettings(function () {
             updateDefaultUserSkin();
             checkChanges();
         });
@@ -333,32 +350,40 @@ $(function () {
     });
 
     function updateSelectedTypeOfCape(isTntClient) {
-        changeSelectedTypeOfCape(isTntClient);
-
         playerSettingsNew["useTntCape"] = isTntClient;
+
+        changeSelectedTypeOfCape();
         checkChanges();
     }
 
+    let uploadedFile = undefined;
     const capeFileElement = document.getElementById("capeFile");
     capeFileElement.addEventListener("change", function () {
         const reader = new FileReader();
         reader.readAsDataURL(capeFileElement.files[0]);
         reader.onload = function (e) {
-            if (document.getElementById('fromInternet').checked) {
-                resizeCapeRaw(e.target.result, function (image) {
-                    changeEditCape(image);
-                    tntClientSkinEdit.reset();
-                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
-                });
-            } else {
-                resizeCape(e.target.result, function (image) {
-                    changeEditCape(image);
-                    tntClientSkinEdit.reset();
-                    tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
-                });
-            }
+            uploadedFile = e.target.result;
+            updateUploadedSkin();
         };
     });
+
+    function updateUploadedSkin() {
+        if (uploadedFile === undefined) return;
+
+        if (document.getElementById('fromInternet').checked) {
+            resizeCapeRaw(uploadedFile, function (image) {
+                changeEditCape(image);
+                tntClientSkinEdit.reset();
+                tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+            });
+        } else {
+            resizeCape(uploadedFile, function (image) {
+                changeEditCape(image);
+                tntClientSkinEdit.reset();
+                tntClientSkinEdit = createSkin(tntClientSkinEditElement, image, false);
+            });
+        }
+    }
 
     const defaultSkinElement = getElementAndRegisterListener("skin_default");
     const tntClientSkinElement = getElementAndRegisterListener("skin_tntclient");
