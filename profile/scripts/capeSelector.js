@@ -14,7 +14,7 @@ function updateState(isLoading) {
 function updateSettings(callback) {
     updateState(true);
     updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
-        updateState(isOk);
+        updateState(!isOk);
         if (isOk) {
             resizeCape(playerSettingsNew["cape"], function (image) {
                 playerSettingsNew["cape"] = image;
@@ -163,6 +163,8 @@ function readUserData(callback) {
 }
 
 function resizeCape(imageBase64, callback) {
+    if(imageBase64 === undefined) callback("");
+
     const image = new Image();
     image.crossOrigin = "anonymous";
     image.onload = function () {
