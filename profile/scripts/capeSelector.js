@@ -201,35 +201,31 @@ function resizeCapeRaw(imageBase64, callback) {
         const blurValue = $("#blur").val()
         ctx.filter = "blur(" + blurValue + "px)";
 
-        if (image.height > image.width) {
-            const capeHeight = (image.width * 256) / 192;
-
+        if (2 * image.height > 3 * image.width) {
             ctx.drawImage(image,
-                0, (16 / (272 + 16)) * capeHeight, image.width, (256 / (272 + 16)) * capeHeight,
+                0, (2 * image.width) / 27, image.width, (32 * image.width) / 27,
                 0, 16, 192, 256);  // Left Front Right
             ctx.drawImage(image,
-                (16 / 192) * image.width, 0, (160 / 192) * image.width, (16 / (272 + 16)) * capeHeight,
+                image.width / 12, 0, (5 * image.width) / 6, (2 * image.width) / 27,
                 16, 0, 160, 16);  // Top
             ctx.drawImage(image,
-                (16 / 192) * image.width, (272 / (272 + 16)) * capeHeight, (160 / 192) * image.width, (16 / (272 + 16)) * capeHeight,
+                image.width / 12, (34 * image.width) / 27, (5 * image.width) / 6, (2 * image.width) / 27,
                 176, 0, 160, 16);  // Bottom
             ctx.drawImage(image,
-                (16 / 192) * image.width, (16 / (272 + 16)) * capeHeight, (160 / 192) * image.width, (256 / (272 + 16)) * capeHeight,
+                image.width / 12, (2 * image.width) / 27, (5 * image.width) / 6, (32 * image.width) / 27,
                 192, 16, 160, 256);  // Back
         } else {
-            const capeWidth = (image.height * 192) / 256;
-
             ctx.drawImage(image,
-                0, (16 / (272 + 16)) * image.height, capeWidth, (256 / (272 + 16)) * image.height,
+                0, image.height / 18, (3 * image.height) / 4, (8 * image.height) / 9,
                 0, 16, 192, 256);  // Left Front Right
             ctx.drawImage(image,
-                (16 / 192) * capeWidth, 0, (160 / 192) * capeWidth, (16 / (272 + 16)) * image.height,
+                image.height / 16, 0, (5 * image.height) / 8, image.height / 18,
                 16, 0, 160, 16);  // Top
             ctx.drawImage(image,
-                (16 / 192) * capeWidth, (272 / (272 + 16)) * image.height, (160 / 192) * capeWidth, (16 / (272 + 16)) * image.height,
+                image.height / 16, (17 * image.height) / 18, (5 * image.height) / 8, image.height / 18,
                 176, 0, 160, 16);  // Bottom
             ctx.drawImage(image,
-                (16 / 192) * capeWidth, (16 / (272 + 16)) * image.height, (160 / 192) * capeWidth, (256 / (272 + 16)) * image.height,
+                image.height / 16, image.height / 18, (5 * image.height) / 8, (8 * image.height) / 9,
                 192, 16, 160, 256);  // Back
         }
 
