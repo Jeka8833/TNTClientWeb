@@ -216,16 +216,16 @@ function resizeCapeRaw(imageBase64, callback) {
                 192, 16, 160, 256);  // Back
         } else {
             ctx.drawImage(image,
-                0, image.height / 18, (3 * image.height) / 4, (8 * image.height) / 9,
+                0, image.height / 18, (2 * image.height) / 3, (8 * image.height) / 9,
                 0, 16, 192, 256);  // Left Front Right
             ctx.drawImage(image,
-                image.height / 16, 0, (5 * image.height) / 8, image.height / 18,
+                image.height / 16, 0, (5 * image.height) / 9, image.height / 18,
                 16, 0, 160, 16);  // Top
             ctx.drawImage(image,
-                image.height / 16, (17 * image.height) / 18, (5 * image.height) / 8, image.height / 18,
+                image.height / 16, (17 * image.height) / 18, (5 * image.height) / 9, image.height / 18,
                 176, 0, 160, 16);  // Bottom
             ctx.drawImage(image,
-                image.height / 16, image.height / 18, (5 * image.height) / 8, (8 * image.height) / 9,
+                image.height / 16, image.height / 18, (5 * image.height) / 9, (8 * image.height) / 9,
                 192, 16, 160, 256);  // Back
         }
 
