@@ -13,7 +13,7 @@ function updateState(isLoading) {
 
 function updateSettings(callback) {
     updateState(true);
-    updateSkin(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
+    updateCape(playerSettingsNew["useTntCape"], playerSettingsNew["cape"], function (isOk) {
         updateState(!isOk);
         if (isOk) {
             resizeCape(playerSettingsNew["cape"], function (image) {
@@ -22,14 +22,14 @@ function updateSettings(callback) {
 
                 playerSettingsOld = Object.assign({}, playerSettingsNew);
                 try {
-                    localStorage.setItem("config", JSON.stringify(playerSettingsNew));
+                    localStorage.setItem("config-cape", JSON.stringify(playerSettingsNew));
                 } catch (e) {
                     console.error(e);
                 }
                 callback(isOk)
             });
         } else {
-            localStorage.removeItem("config")
+            localStorage.removeItem("config-cape")
             callback(isOk)
         }
     });
@@ -39,7 +39,7 @@ function readSettings() {
     playerSettingsOld = {useTntCape: false};
     playerSettingsNew = {useTntCape: false};
 
-    const configParsed = JSON.parse(localStorage.getItem("config"));
+    const configParsed = JSON.parse(localStorage.getItem("config-cape"));
     if (configParsed != null && configParsed.timeout !== undefined &&
         Date.now() - configParsed.timeout < 5 * 60 * 1000) {
         delete configParsed.timeout;
@@ -49,7 +49,7 @@ function readSettings() {
 
         changeSelectedTypeOfCape();
     } else {
-        localStorage.removeItem("config");
+        localStorage.removeItem("config-cape");
 
         readUserData(function (data) {
             if (data !== undefined && data["capePriority"] === 2) {

@@ -15,6 +15,16 @@ function isTntCape(callback) {
     });
 }
 
+function isTntHeart(callback) {
+    readPrivileges(function (priv) {
+        if (priv == null) {
+            callback(false);
+        } else {
+            callback(priv.includes('HEART'));
+        }
+    });
+}
+
 function login(userUUID, userToken, callback) {
     readPrivileges(function (priv) {
         try {
@@ -28,7 +38,8 @@ function login(userUUID, userToken, callback) {
 
 function logout(callback) {
     localStorage.removeItem("user");
-    localStorage.removeItem("config");
+    localStorage.removeItem("config-cape");
+    localStorage.removeItem("config-heart");
     localStorage.removeItem("roles");
 
     $.ajax({
@@ -62,7 +73,7 @@ function addServerErrorListener(callback) {
     serverError.push(callback);
 }
 
-function updateSkin(isTntClient, cape, callback) {
+function updateCape(isTntClient, cape, callback) {
     $.ajax({
         type: "POST",
         url: serverHubUrl + "api/cape",
@@ -70,6 +81,34 @@ function updateSkin(isTntClient, cape, callback) {
         data: JSON.stringify({
             useTNTCape: isTntClient,
             cape: cape
+        }),
+        dataType: "json",
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (data) {
+            callback(true);
+        },
+        error: function (jqXHR, exception) {
+            if (jqXHR.status === 401) {
+                callLoginError();
+            } else {
+                callServerError();
+            }
+            callback(false);
+        }
+    });
+}
+
+function updateHeart(animation, delayTime, callback) {
+    $.ajax({
+        type: "POST",
+        url: serverHubUrl + "api/heart",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            textAnimation: animation,
+            delayTime: delayTime
         }),
         dataType: "json",
         crossDomain: true,
