@@ -156,10 +156,23 @@ function myInitCode() {
 
     function updateTextarea() {
         const configParsed = JSON.parse(localStorage.getItem("config-heart"));
-        if (configParsed != null && configParsed.timeout !== undefined && Date.now() > configParsed.timeout) {
+        if (configParsed != null && configParsed.timeout !== undefined && Date.now() < configParsed.timeout) {
             delete configParsed.timeout;
 
             savedConfig = Object.assign({}, configParsed);
+
+            speedDividerElement.value = savedConfig.timeShift;
+
+            let tempArr = []
+            for (const anim of savedConfig.textAnimation) {
+                let formatted = anim;
+                while (formatted.endsWith('&r') || formatted.endsWith('&R') ||
+                formatted.endsWith('\u00A7r') || formatted.endsWith('\u00A7R')) {
+                    formatted = formatted.substring(0, formatted.length - 2)
+                }
+                tempArr.push(formatted)
+            }
+            textElement.value = tempArr.join('\n');
         } else {
             localStorage.removeItem("config-heart");
 
@@ -172,13 +185,22 @@ function myInitCode() {
                         savedConfig.timeShift = data['heartAnimation']['timeShift'];
                     }
                 }
+
+                speedDividerElement.value = savedConfig.timeShift;
+
+                let tempArr = []
+                for (const anim of savedConfig.textAnimation) {
+                    let formatted = anim;
+                    while (formatted.endsWith('&r') || formatted.endsWith('&R') ||
+                    formatted.endsWith('\u00A7r') || formatted.endsWith('\u00A7R')) {
+                        formatted = formatted.substring(0, formatted.length - 2)
+                    }
+                    tempArr.push(formatted)
+                }
+                textElement.value = tempArr.join('\n');
             });
         }
-
-        speedDividerElement.value = savedConfig.timeShift;
-        textElement.value = savedConfig.textAnimation.join('\n');
     }
-
 }
 
 function readUserData(callback) {
