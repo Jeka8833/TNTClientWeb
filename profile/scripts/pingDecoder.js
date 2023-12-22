@@ -39,32 +39,140 @@ function generateDataForDataset(data, name) {
 $(function () {
     const hypixelPingE = document.getElementById('hypixelPing');
     const hypixelPingChart = new Chart(hypixelPingE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
     const myPingE = document.getElementById('myPing');
     const myPingChart = new Chart(myPingE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
     const downloadSpeedE = document.getElementById('downloadSpeed');
     const downloadSpeedChart = new Chart(downloadSpeedE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
     const uploadSpeedE = document.getElementById('uploadSpeed');
     const uploadSpeedChart = new Chart(uploadSpeedE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
     const DJPingE = document.getElementById('DJPing');
     const DJPingChart = new Chart(DJPingE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
     const brtE = document.getElementById('brt');
     const brtChart = new Chart(brtE, {
-        type: 'scatter'
+        type: 'scatter',
+        options: {
+            plugins: {
+                zoom: {
+                    zoom: {
+                        wheel: {
+                            enabled: true,
+                        },
+                        drag: {
+                            enabled: true,
+                        },
+                        pinch: {
+                            enabled: true
+                        },
+                        mode: 'x',
+                    }
+                }
+            }
+        }
     });
 
 
@@ -74,7 +182,7 @@ $(function () {
         reader.readAsText(capeFileElement.files[0]);
         reader.onload = function (e) {
             const data = $.csv.toObjects(e.target.result, {
-                separator: ';'
+                separator: ','
             });
 
             console.log('File content:', data);
