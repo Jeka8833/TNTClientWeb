@@ -204,7 +204,7 @@ function myInitCode() {
 }
 
 function readUserData(callback) {
-    $.getJSON("https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capeData/" + userUUID + ".json",
+    $.getJSON("https://tntcape.jeka8833.pp.ua/capeData/" + userUUID + ".json",
         function (data) {
             callback(data);
         }).fail(function () {

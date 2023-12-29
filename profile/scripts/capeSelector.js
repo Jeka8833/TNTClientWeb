@@ -154,7 +154,7 @@ function nameReadCapes(name, callback) {
 }
 
 function readUserData(callback) {
-    $.getJSON("https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capeData/" + userUUID + ".json",
+    $.getJSON("https://tntcape.jeka8833.pp.ua/capeData/" + userUUID + ".json",
         function (data) {
             callback(data);
         }).fail(function () {
@@ -208,12 +208,20 @@ function resizeCapeRaw(imageBase64, callback) {
             ctx.drawImage(image,
                 image.width / 12, 0, (5 * image.width) / 6, (2 * image.width) / 27,
                 16, 0, 160, 16);  // Top
+
+            ctx.save();
+            ctx.scale(1, -1);
             ctx.drawImage(image,
                 image.width / 12, (34 * image.width) / 27, (5 * image.width) / 6, (2 * image.width) / 27,
-                176, 0, 160, 16);  // Bottom
+                176, -0, 160, -16);  // Bottom
+            ctx.restore();
+
+            ctx.save();
+            ctx.scale(-1, 1);
             ctx.drawImage(image,
                 image.width / 12, (2 * image.width) / 27, (5 * image.width) / 6, (32 * image.width) / 27,
-                192, 16, 160, 256);  // Back
+                -192, 16, -160, 256);  // Back
+            ctx.restore();
         } else {
             ctx.drawImage(image,
                 0, image.height / 18, (2 * image.height) / 3, (8 * image.height) / 9,
@@ -221,12 +229,20 @@ function resizeCapeRaw(imageBase64, callback) {
             ctx.drawImage(image,
                 image.height / 16, 0, (5 * image.height) / 9, image.height / 18,
                 16, 0, 160, 16);  // Top
+
+            ctx.save();
+            ctx.scale(1, -1);
             ctx.drawImage(image,
                 image.height / 16, (17 * image.height) / 18, (5 * image.height) / 9, image.height / 18,
-                176, 0, 160, 16);  // Bottom
+                176, -0, 160, -16);  // Bottom
+            ctx.restore();
+
+            ctx.save();
+            ctx.scale(-1, 1);
             ctx.drawImage(image,
                 image.height / 16, image.height / 18, (5 * image.height) / 9, (8 * image.height) / 9,
-                192, 16, 160, 256);  // Back
+                -192, 16, -160, 256);  // Back
+            ctx.restore();
         }
 
         callback(canvas.toDataURL());
@@ -426,8 +442,7 @@ $(function () {
                     tntClientSkinEdit.reset();
                     tntClientSkinEdit = createSkin(tntClientSkinEditElement);
                 } else {
-                    const capeUrl = "https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capes/" +
-                        userUUID + ".png";
+                    const capeUrl = "https://tntcape.jeka8833.pp.ua/capes/" + userUUID + ".png";
 
                     resizeCape(capeUrl, function (image) {
                         tntClientSkin.reset();
@@ -455,8 +470,7 @@ $(function () {
                     tntClientSkinEdit.reset();
                     tntClientSkinEdit = createSkin(tntClientSkinEditElement);
                 } else {
-                    const capeUrl = "https://raw.githubusercontent.com/Jeka8833/TntClientFileServer/main/capes/" +
-                        userUUID + ".png";
+                    const capeUrl = "https://tntcape.jeka8833.pp.ua/capes/" + userUUID + ".png";
 
                     resizeCape(capeUrl, function (image) {
                         tntClientSkinEdit.reset();
