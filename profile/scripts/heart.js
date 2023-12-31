@@ -204,7 +204,7 @@ function myInitCode() {
 }
 
 function readUserData(callback) {
-    $.getJSON("https://tntcape.jeka8833.pp.ua/capeData/" + userUUID + ".json",
+    $.getJSON(getCapeApiAddress('capeData/' + userUUID + '.json'),
         function (data) {
             callback(data);
         }).fail(function () {

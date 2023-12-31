@@ -1,7 +1,3 @@
-const debugUrl = false;
-const serverHubUrl = debugUrl ? "http://localhost:80/": "https://tntclient.jeka8833.pp.ua/";
-const webPageRootUrl = debugUrl ? "/TNTClientWeb": "/TNTClient";
-
 const authenticationError = [];
 const serverError = [];
 
@@ -28,23 +24,23 @@ function isTntHeart(callback) {
 function login(userUUID, userToken, callback) {
     readPrivileges(function (priv) {
         try {
-            if (priv != null) localStorage.setItem("user", userUUID);
+            if (priv != null) localStorage.setItem('user', userUUID);
             callback(priv);
         } catch (e) {
-            console.error("Fail login", e)
+            console.error('Fail login', e)
         }
-    }, {"Authorization": "Basic " + btoa(userUUID + ":" + userToken)})
+    }, {'Authorization': 'Basic ' + btoa(userUUID + ':' + userToken)})
 }
 
 function logout(callback) {
-    localStorage.removeItem("user");
-    localStorage.removeItem("config-cape");
-    localStorage.removeItem("config-heart");
-    localStorage.removeItem("roles");
+    localStorage.removeItem('user');
+    localStorage.removeItem('config-cape');
+    localStorage.removeItem('config-heart');
+    localStorage.removeItem('roles');
 
     $.ajax({
-        type: "POST",
-        url: serverHubUrl + "api/logout",
+        type: 'POST',
+        url: getTntServerApiAddress('api/logout'),
         crossDomain: true,
         xhrFields: {
             withCredentials: true
@@ -59,7 +55,7 @@ function logout(callback) {
 }
 
 function getUser() {
-    const user = localStorage.getItem("user");
+    const user = localStorage.getItem('user');
     if (user == null) callLoginError();
 
     return user;
@@ -75,14 +71,14 @@ function addServerErrorListener(callback) {
 
 function updateCape(isTntClient, cape, callback) {
     $.ajax({
-        type: "POST",
-        url: serverHubUrl + "api/cape",
-        contentType: "application/json; charset=utf-8",
+        type: 'POST',
+        url: getTntServerApiAddress('api/cape'),
+        contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             useTNTCape: isTntClient,
             cape: cape
         }),
-        dataType: "json",
+        dataType: 'json',
         crossDomain: true,
         xhrFields: {
             withCredentials: true
@@ -103,14 +99,14 @@ function updateCape(isTntClient, cape, callback) {
 
 function updateHeart(animation, delayTime, callback) {
     $.ajax({
-        type: "POST",
-        url: serverHubUrl + "api/heart",
-        contentType: "application/json; charset=utf-8",
+        type: 'POST',
+        url: getTntServerApiAddress('api/heart'),
+        contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
             textAnimation: animation,
             delayTime: delayTime
         }),
-        dataType: "json",
+        dataType: 'json',
         crossDomain: true,
         xhrFields: {
             withCredentials: true
@@ -135,7 +131,7 @@ let privileges = undefined;
 
 function readPrivileges(callback, header) {
     if (privileges === undefined) {
-        const roleCache = JSON.parse(localStorage.getItem("roles"));
+        const roleCache = JSON.parse(localStorage.getItem('roles'));
 
         if (roleCache != null && roleCache.roles !== undefined && roleCache.timeout !== undefined &&
             Date.now() - roleCache.timeout < 10 * 60 * 1000) {
@@ -143,10 +139,10 @@ function readPrivileges(callback, header) {
             callback(roleCache.roles);
         } else {
             $.ajax({
-                type: "GET",
-                url: serverHubUrl + "api/roles",
+                type: 'GET',
+                url: getTntServerApiAddress('api/roles'),
                 data: {remember: true},
-                dataType: "json",
+                dataType: 'json',
                 headers: header,
                 crossDomain: true,
                 xhrFields: {
@@ -156,9 +152,9 @@ function readPrivileges(callback, header) {
                     privileges = data;
                     callback(data);
                     try {
-                        localStorage.setItem("roles", JSON.stringify({"timeout": Date.now(), "roles": data}));
+                        localStorage.setItem('roles', JSON.stringify({'timeout': Date.now(), 'roles': data}));
                     } catch (e) {
-                        console.error("Fail write localStorage", e)
+                        console.error('Fail write localStorage', e)
                     }
                 },
                 error: function (jqXHR, exception) {

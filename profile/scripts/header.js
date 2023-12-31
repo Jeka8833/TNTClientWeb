@@ -1,5 +1,6 @@
 addAuthenticationErrorListener(function () {
-    window.location.replace(webPageRootUrl + "/profile/login/fail.html");
+    if (currentDomain !== undefined && currentDomain.redirectOnFail)
+        window.location.replace(getCurrentDomainAddress('profile/login/fail.html'));
 })
 
 addServerErrorListener(function () {
@@ -17,7 +18,7 @@ $(function () {
 
     $("#logoutBtn").click(function () {
         logout(function (redirect) {
-            window.location.replace(webPageRootUrl + "/profile/login/fail.html");
+            window.location.replace(getCurrentDomainAddress("profile/login/logout.html"));
         })
     });
 });

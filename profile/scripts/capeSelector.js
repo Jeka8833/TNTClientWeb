@@ -154,7 +154,7 @@ function nameReadCapes(name, callback) {
 }
 
 function readUserData(callback) {
-    $.getJSON("https://tntcape.jeka8833.pp.ua/capeData/" + userUUID + ".json",
+    $.getJSON(getCapeApiAddress('capeData/' + userUUID + '.json'),
         function (data) {
             callback(data);
         }).fail(function () {
@@ -442,7 +442,7 @@ $(function () {
                     tntClientSkinEdit.reset();
                     tntClientSkinEdit = createSkin(tntClientSkinEditElement);
                 } else {
-                    const capeUrl = "https://tntcape.jeka8833.pp.ua/capes/" + userUUID + ".png";
+                    const capeUrl = getCapeApiAddress('capes/' + userUUID + '.png');
 
                     resizeCape(capeUrl, function (image) {
                         tntClientSkin.reset();
@@ -470,7 +470,7 @@ $(function () {
                     tntClientSkinEdit.reset();
                     tntClientSkinEdit = createSkin(tntClientSkinEditElement);
                 } else {
-                    const capeUrl = "https://tntcape.jeka8833.pp.ua/capes/" + userUUID + ".png";
+                    const capeUrl = getCapeApiAddress('capes/' + userUUID + '.png');
 
                     resizeCape(capeUrl, function (image) {
                         tntClientSkinEdit.reset();
