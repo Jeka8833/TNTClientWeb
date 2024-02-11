@@ -39,7 +39,4 @@ function myInitCode() {
 
 
     showDownload();
-    $("#type").on('change', showDownload);
-    $("#system").on('change', showDownload);
-    $("#architecture").on('change', showDownload);
 }

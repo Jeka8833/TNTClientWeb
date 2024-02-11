@@ -16,8 +16,8 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.2/font/bootstrap-icons.min.css"
-          integrity="sha512-D1liES3uvDpPrgk7vXR/hR/sukGn7EtDWEyvpdLsyalQYq6v6YUsTUJmku7B4rcuQ21rf0UTksw2i/2Pdjbd3g=="
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+          integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"
@@ -104,7 +104,7 @@
         <div class="d-flex flex-wrap">
             <div class="flex-fill p-2">
                 <label for="system" class="form-label">Launcher</label>
-                <select class="form-select" aria-label="System" id="type">
+                <select class="form-select" aria-label="System" id="type" onchange="showDownload()">
                     <option selected value="0">All</option>
                     <option value="1">Official Minecraft Launcher</option>
                     <option value="2">MultiMC based</option>
@@ -113,7 +113,7 @@
 
             <div class="flex-fill p-2">
                 <label for="system" class="form-label">Operating System</label>
-                <select class="form-select" aria-label="System" id="system">
+                <select class="form-select" aria-label="System" id="system"  onchange="showDownload()">
                     <option selected value="0">All</option>
                     <option value="1">Windows</option>
                     <option value="2">Linux</option>
@@ -123,7 +123,7 @@
 
             <div class="flex-fill p-2">
                 <label for="architecture" class="form-label">Processor Architecture</label>
-                <select class="form-select" aria-label="Architecture" id="architecture">
+                <select class="form-select" aria-label="Architecture" id="architecture"  onchange="showDownload()">
                     <option selected value="0">All</option>
                     <option value="1">x86 (32-bit)</option>
                     <option value="2">x86 (64-bit)</option>
@@ -456,7 +456,7 @@
 </main>
 <footer class="container-xxl flex-grow-0 flex-shrink-1 border-top">
     <div class="py-1 m-1 d-flex align-items-center flex-column flex-sm-row justify-content-between">
-        <p class="m-0">Created by: Jeka8833, 2023 year</p>
+        <p class="m-0">Created by: Jeka8833, 2023-2024 year</p>
         <a class="link-secondary fs-4" href="https://github.com/Jeka8833" target="_blank" rel="noopener noreferrer">
             <i class="bi bi-github"></i></a>
     </div>
