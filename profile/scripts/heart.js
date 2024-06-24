@@ -3,15 +3,7 @@ const colorChars = "0123456789abcdef"
 
 let savedConfig = {textAnimation: ["&a❤"], timeShift: 1000};
 
-if (document.readyState !== 'loading') {
-    myInitCode();
-} else {
-    document.addEventListener('DOMContentLoaded', function () {
-        myInitCode();
-    });
-}
-
-function myInitCode() {
+$(document).ready(function() {
     const textElement = document.getElementById("text");
     const speedDividerElement = document.getElementById("speedDivider");
     const speedDividerTextElement = document.getElementById("speedDividerText");
@@ -201,7 +193,7 @@ function myInitCode() {
             });
         }
     }
-}
+})
 
 function readUserData(callback) {
     $.getJSON(getCapeApiAddress('capeData/' + userUUID + '.json'),

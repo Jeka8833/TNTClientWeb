@@ -5,14 +5,6 @@ const DOWNLOAD_LIST = [
     {id: "#MultiMCUniversal", launcher: [2]}
 ]
 
-if (document.readyState !== 'loading') {
-    myInitCode();
-} else {
-    document.addEventListener('DOMContentLoaded', function () {
-        myInitCode();
-    });
-}
-
 function showDownload() {
     const launcher = Number($("#type").val());
     const os = Number($("#system").val());
@@ -31,7 +23,7 @@ function showDownload() {
     }
 }
 
-function myInitCode() {
+$(document).ready(function() {
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
@@ -39,4 +31,4 @@ function myInitCode() {
 
 
     showDownload();
-}
+})

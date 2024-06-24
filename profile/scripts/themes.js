@@ -48,15 +48,7 @@
         }
     })
 
-    if (document.readyState !== 'loading') {
-        myInitCode();
-    } else {
-        document.addEventListener('DOMContentLoaded', function () {
-            myInitCode();
-        });
-    }
-
-    function myInitCode() {
+    $(document).ready(function() {
         showActiveTheme(getPreferredTheme())
 
         document.querySelectorAll('[data-bs-theme-value]')
@@ -68,5 +60,5 @@
                     showActiveTheme(theme)
                 })
             })
-    }
+    });
 })()
